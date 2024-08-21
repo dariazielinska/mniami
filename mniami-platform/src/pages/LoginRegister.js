@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const LoginRegister = () => {
 
@@ -12,7 +14,7 @@ const LoginRegister = () => {
     const handleSignUp = async () => {
         try {
             await signup(email, password);
-            navigate('/');
+            navigate('/recipes');
           } catch (e) {
             console.log('Failed to create an account', e);
           }
@@ -21,7 +23,7 @@ const LoginRegister = () => {
       const handleSignIn = async () => {
         try {
             await login(email, password);
-            navigate('/');
+            navigate('/recipes');
           } catch (e) {
             console.log('Failed to log in', e);
           }
@@ -29,6 +31,7 @@ const LoginRegister = () => {
 
     return (
       <div>
+        <Header/>
           ZAKŁADKA LOGOWANIE & REJESTRACJA
           <div>
               <input 
@@ -48,6 +51,7 @@ const LoginRegister = () => {
                 <button onClick={handleSignIn}> Sign In </button>
               </div>
           </div>
+          <Footer/>
         </div>
     );
   }

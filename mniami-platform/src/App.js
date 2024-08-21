@@ -1,17 +1,18 @@
 import './App.css';
 import  { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Start from './components/Start';
-import Help from './components/Help';
-import Pricing from './components/Pricing';
-import Recipes from './components/Recipes';
-import Recipe from './components/Recipe';
-import Articles from './components/Articles';
-import Article from './components/Article';
-import LoginRegister from './components/LoginRegister';
-import UserProfile from './components/UserProfile';
-import Favourites from './components/Favourites';
-import Plan from './components/Plan';
-import ShoppingList from './components/ShoppingList';
+import Start from './pages/Start';
+import Help from './pages/Help';
+import Pricing from './pages/Pricing';
+import Recipes from './pages/Recipes';
+import Recipe from './pages/Recipe';
+import Articles from './pages/Articles';
+import Article from './pages/Article';
+import LoginRegister from './pages/LoginRegister';
+import UserProfile from './pages/UserProfile';
+import Favourites from './pages/Favourites';
+import Plan from './pages/Plan';
+import ShoppingList from './pages/ShoppingList';
+import About from './pages/About';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Start/>} />
           <Route path='/landing' element={<Start/>} />
+          <Route path='/discover' element={<About/>} />
           <Route path='/help' element={<Help/>} />
           <Route path='/pricing' element={<Pricing/>} />
           <Route path='/recipes' element={<Recipes/>} />
