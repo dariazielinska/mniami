@@ -1,15 +1,14 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 function Recipe() {
-    return (
-        <div>
-            <Header/>
-            ZAKŁADKA PRZEPIS SZCZEGÓŁY
-            <Footer/>
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      ZAKŁADKA PRZEPIS SZCZEGÓŁY
+      <Footer />
+    </div>
+  )
 }
-  
-export default Recipe;
-  
+
+export default Recipe
