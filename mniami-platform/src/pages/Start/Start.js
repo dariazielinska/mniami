@@ -1,8 +1,9 @@
-import { useAuth } from '../contexts/AuthProvider'
+import { useAuth } from '../../contexts/AuthProvider'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header/Header'
+import HeroSection from './HeroSection'
+import Footer from '../../components/Footer'
 
 function Start() {
   const { currentUser } = useAuth()
@@ -17,7 +18,7 @@ function Start() {
   return (
     <div>
       <Header />
-      ZAKŁADKA START
+      <HeroSection />
       <Footer />
     </div>
   )

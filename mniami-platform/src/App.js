@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@emotion/react'
 import theme from './styles/theme'
 import GlobalStyles from './styles/GlobalStyles'
-import Start from './pages/Start'
+import Start from './pages/Start/Start'
 import Help from './pages/Help'
 import Pricing from './pages/Pricing'
 import Recipes from './pages/Recipes'
@@ -14,7 +14,6 @@ import UserProfile from './pages/UserProfile'
 import Favourites from './pages/Favourites'
 import Plan from './pages/Plan'
 import ShoppingList from './pages/ShoppingList'
-import About from './pages/About'
 
 function App() {
   return (
@@ -23,8 +22,7 @@ function App() {
         <GlobalStyles />
         <Routes>
           <Route exact path="/" element={<Start />} />
-          <Route path="/landing" element={<Start />} />
-          <Route path="/discover" element={<About />} />
+          <Route path="/discover" element={<Start />} />
           <Route path="/help" element={<Help />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/recipes" element={<Recipes />} />
