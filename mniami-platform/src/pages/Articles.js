@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../firebaseConfig'
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -37,7 +38,9 @@ function Articles() {
       ) : (
         <ul>
           {articles.map((article) => (
-            <li key={article.id}>{article.title}</li>
+            <Link to={`/article/${article.id}`} key={article.id}>
+              {article.title}
+            </Link>
           ))}
         </ul>
       )}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../firebaseConfig'
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -37,7 +38,9 @@ function Recipes() {
       ) : (
         <ul>
           {recipes.map((recipe) => (
-            <li key={recipe.id}>{recipe.title}</li>
+            <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+              {recipe.title}
+            </Link>
           ))}
         </ul>
       )}
