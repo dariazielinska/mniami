@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useAuth } from '../../contexts/AuthProvider'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NavigationContainer = styled.nav`
   display: none;
@@ -9,13 +9,18 @@ const NavigationContainer = styled.nav`
     flex: 1;
     display: flex;
     justify-content: center;
+  }
+`
 
-    a {
-      text-decoration: none;
-      color: #333;
-      font-size: 13px;
-      padding-right: 12px;
-    }
+export const MenuLink = styled(NavLink)`
+  text-decoration: none;
+  color: #333;
+  font-size: 13px;
+  margin-right: 12px;
+
+  &.active {
+    font-weight: bold;
+    border-bottom: 3px solid ${({ theme }) => theme.colors.primary};
   }
 `
 
@@ -25,16 +30,16 @@ const Navigation = () => {
     <NavigationContainer>
       {currentUser ? (
         <div>
-          <Link to="/articles"> Baza wiedzy </Link>
-          <Link to="/recipes"> Przepisy </Link>
-          <Link to="/plan"> Plan posiłków </Link>
-          <Link to="/shopping-list"> Lista zakupów </Link>
+          <MenuLink to="/articles"> Baza wiedzy </MenuLink>
+          <MenuLink to="/recipes"> Przepisy </MenuLink>
+          <MenuLink to="/plan"> Plan posiłków </MenuLink>
+          <MenuLink to="/shopping-list"> Lista zakupów </MenuLink>
         </div>
       ) : (
         <div>
-          <Link to="/discover"> Odkrywaj </Link>
-          <Link to="/pricing"> Subskrypcja </Link>
-          <Link to="/help"> Pomoc </Link>
+          <MenuLink to="/discover"> Odkrywaj </MenuLink>
+          <MenuLink to="/pricing"> Subskrypcja </MenuLink>
+          <MenuLink to="/help"> Pomoc </MenuLink>
         </div>
       )}
     </NavigationContainer>

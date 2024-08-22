@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthProvider'
 import styled from '@emotion/styled'
 import LogoutButton from './LogoutButton'
@@ -8,17 +8,24 @@ const MobileMenuContainer = styled.div`
   flex-direction: column;
   position: absolute;
   width: 100vw;
-  top: 50px;
+  top: 65px;
   left: 0;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  padding-top: 20px;
+`
 
-  a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-    margin-bottom: 10px;
+export const MenuLink = styled(NavLink)`
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #dfdfdf;
+
+  &.active {
+    font-weight: bold;
+    border-left: 3px solid ${({ theme }) => theme.colors.primary};
   }
 `
 
@@ -29,21 +36,20 @@ const MobileMenu = () => {
     <MobileMenuContainer>
       {currentUser ? (
         <>
-          <Link to="/articles"> Baza wiedzy </Link>
-          <Link to="/recipes"> Przepisy </Link>
-          <Link to="/plan"> Plan posiłków </Link>
-          <Link to="/shopping-list"> Lista zakupów </Link>
-          <Link to="/favourites"> Ulubione </Link>
-          <Link to="/profile"> Mój profil </Link>
+          <MenuLink to="/profile"> Mój profil </MenuLink>
+          <MenuLink to="/articles"> Baza wiedzy </MenuLink>
+          <MenuLink to="/recipes"> Przepisy </MenuLink>
+          <MenuLink to="/plan"> Plan posiłków </MenuLink>
+          <MenuLink to="/shopping-list"> Lista zakupów </MenuLink>
+          <MenuLink to="/favourites"> Ulubione </MenuLink>
           <LogoutButton />
         </>
       ) : (
         <>
-          <Link to="/discover"> Odkrywaj </Link>
-          <Link to="/pricing"> Subskrypcja </Link>
-          <Link to="/help"> Pomoc </Link>
-          <Link to="/auth"> Załóż konto </Link>
-          <Link to="/auth"> Zaloguj się </Link>
+          <MenuLink to="/discover"> Odkrywaj </MenuLink>
+          <MenuLink to="/pricing"> Subskrypcja </MenuLink>
+          <MenuLink to="/help"> Pomoc </MenuLink>
+          <MenuLink to="/auth"> Załóż konto Zaloguj się </MenuLink>
         </>
       )}
     </MobileMenuContainer>

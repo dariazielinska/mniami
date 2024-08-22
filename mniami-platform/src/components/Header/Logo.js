@@ -1,4 +1,6 @@
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthProvider'
 
 const LogoContainer = styled.div`
   display: flex;
@@ -18,11 +20,16 @@ const LogoText = styled.h1`
 `
 
 const Logo = () => {
+  const { currentUser } = useAuth()
+  const targetPath = currentUser ? '/recipes' : '/discover'
+
   return (
-    <LogoContainer>
-      <LogoImage />
-      <LogoText> MNIAMI </LogoText>
-    </LogoContainer>
+    <Link to={targetPath}>
+      <LogoContainer>
+        <LogoImage />
+        <LogoText> MNIAMI </LogoText>
+      </LogoContainer>
+    </Link>
   )
 }
 

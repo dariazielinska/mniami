@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   padding: 15px;
   max-width: 100vw;
   justify-content: space-between;
+  height: 60px;
 
   @media (min-width: 768px) {
     padding: 10px 20px;
