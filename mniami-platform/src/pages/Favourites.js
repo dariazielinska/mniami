@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthProvider'
 import { firestore } from '../firebaseConfig'
 import { collection, doc, getDoc } from 'firebase/firestore'
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
 
 function Favourites() {

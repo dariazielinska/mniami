@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../firebaseConfig'
 import { Link } from 'react-router-dom'
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
 
 function Articles() {

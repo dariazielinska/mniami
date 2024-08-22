@@ -1,8 +1,20 @@
-import { useAuth } from '../contexts/AuthProvider'
+import styled from '@emotion/styled'
+import { useAuth } from '../../contexts/AuthProvider'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-function Header() {
+const UserLinksContainer = styled.div`
+  display: flex;
+  gap: 10px;
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+  }
+`
+
+const UserLinks = () => {
   const { currentUser, logout } = useAuth()
   const navigate = useNavigate()
 
@@ -16,29 +28,21 @@ function Header() {
   }
 
   return (
-    <div>
-      <Link to="/"> HEADER - LOGO </Link>
+    <UserLinksContainer>
       {currentUser ? (
         <div>
-          <Link to="/articles"> Baza wiedzy </Link>
-          <Link to="/recipes"> Przepisy </Link>
-          <Link to="/plan"> Plan posiłków </Link>
-          <Link to="/shopping-list"> Lista zakupów </Link>
           <Link to="/favourites"> Ulubione </Link>
           <Link to="/profile"> Mój profil </Link>
           <button onClick={handleLogout}>Wyloguj</button>
         </div>
       ) : (
         <div>
-          <Link to="/discover"> Odkrywaj </Link>
-          <Link to="/pricing"> Subskrypcja </Link>
-          <Link to="/help"> Pomoc </Link>
           <Link to="/auth"> Załóż konto </Link>
           <Link to="/auth"> Zaloguj się </Link>
         </div>
       )}
-    </div>
+    </UserLinksContainer>
   )
 }
 
-export default Header
+export default UserLinks
