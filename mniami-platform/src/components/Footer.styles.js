@@ -16,6 +16,6 @@ export const Container = styled.div`
 `
 
 export const Title = styled.p`
-  color: #333;
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 20px;
 `
