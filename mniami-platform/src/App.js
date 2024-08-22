@@ -1,5 +1,5 @@
-import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import GlobalStyles from './GlobalStyles'
 import Start from './pages/Start'
 import Help from './pages/Help'
 import Pricing from './pages/Pricing'
@@ -17,6 +17,7 @@ import About from './pages/About'
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyles />
       <Routes>
         <Route exact path="/" element={<Start />} />
         <Route path="/landing" element={<Start />} />
