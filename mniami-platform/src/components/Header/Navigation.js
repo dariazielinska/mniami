@@ -3,13 +3,19 @@ import { useAuth } from '../../contexts/AuthProvider'
 import { Link } from 'react-router-dom'
 
 const NavigationContainer = styled.nav`
-  display: flex;
-  gap: 15px;
+  display: none;
 
-  a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
+  @media (min-width: 768px) {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-size: 13px;
+      padding-right: 12px;
+    }
   }
 `
 

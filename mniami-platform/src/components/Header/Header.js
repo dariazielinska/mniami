@@ -33,15 +33,6 @@ const HamburgerButton = styled.button`
   }
 `
 
-const MenuContainer = styled.div`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-  }
-`
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
@@ -53,10 +44,8 @@ const Header = () => {
         Menu <MenuIcon />
       </HamburgerButton>
       {isMenuOpen && <MobileMenu />}
-      <MenuContainer>
-        <Navigation />
-        <UserLinks />
-      </MenuContainer>
+      <Navigation />
+      <UserLinks />
     </HeaderContainer>
   )
 }

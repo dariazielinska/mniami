@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthProvider'
 import styled from '@emotion/styled'
-import { useNavigate } from 'react-router-dom'
+import LogoutButton from './LogoutButton'
 
 const MobileMenuContainer = styled.div`
   display: flex;
@@ -23,17 +23,7 @@ const MobileMenuContainer = styled.div`
 `
 
 const MobileMenu = () => {
-  const { currentUser, logout } = useAuth()
-  const navigate = useNavigate()
-
-  const handleLogout = async () => {
-    try {
-      await logout()
-      navigate('/')
-    } catch (e) {
-      console.error('Failed to log out', e)
-    }
-  }
+  const { currentUser } = useAuth()
 
   return (
     <MobileMenuContainer>
@@ -45,7 +35,7 @@ const MobileMenu = () => {
           <Link to="/shopping-list"> Lista zakupów </Link>
           <Link to="/favourites"> Ulubione </Link>
           <Link to="/profile"> Mój profil </Link>
-          <button onClick={handleLogout}>Wyloguj</button>
+          <LogoutButton />
         </>
       ) : (
         <>

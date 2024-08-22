@@ -11,6 +11,9 @@ const GlobalStyles = () => (
         padding: 0;
         box-sizing: border-box;
       }
+      button {
+        font-family: 'Montserrat', sans-serif;
+      }
     `}
   />
 )
