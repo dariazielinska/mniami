@@ -8,12 +8,11 @@ const MobileMenuContainer = styled.div`
   flex-direction: column;
   position: absolute;
   width: 100vw;
-  top: 65px;
+  top: 70px;
   left: 0;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding-top: 20px;
 `
 
 export const MenuLink = styled(NavLink)`
@@ -29,27 +28,47 @@ export const MenuLink = styled(NavLink)`
   }
 `
 
-const MobileMenu = () => {
+const MobileMenu = ({ toggleMenu }) => {
   const { currentUser } = useAuth()
 
   return (
     <MobileMenuContainer>
       {currentUser ? (
         <>
-          <MenuLink to="/profile"> Mój profil </MenuLink>
-          <MenuLink to="/articles"> Baza wiedzy </MenuLink>
-          <MenuLink to="/recipes"> Przepisy </MenuLink>
-          <MenuLink to="/plan"> Plan posiłków </MenuLink>
-          <MenuLink to="/shopping-list"> Lista zakupów </MenuLink>
-          <MenuLink to="/favourites"> Ulubione </MenuLink>
+          <MenuLink to="/profile" onClick={toggleMenu}>
+            Mój profil
+          </MenuLink>
+          <MenuLink to="/articles" onClick={toggleMenu}>
+            Baza wiedzy
+          </MenuLink>
+          <MenuLink to="/recipes" onClick={toggleMenu}>
+            Przepisy
+          </MenuLink>
+          <MenuLink to="/plan" onClick={toggleMenu}>
+            Plan posiłków
+          </MenuLink>
+          <MenuLink to="/shopping-list" onClick={toggleMenu}>
+            Lista zakupów
+          </MenuLink>
+          <MenuLink to="/favourites" onClick={toggleMenu}>
+            Ulubione
+          </MenuLink>
           <LogoutButton />
         </>
       ) : (
         <>
-          <MenuLink to="/discover"> Odkrywaj </MenuLink>
-          <MenuLink to="/pricing"> Subskrypcja </MenuLink>
-          <MenuLink to="/help"> Pomoc </MenuLink>
-          <MenuLink to="/auth"> Załóż konto Zaloguj się </MenuLink>
+          <MenuLink to="/discover" onClick={toggleMenu}>
+            Odkrywaj
+          </MenuLink>
+          <MenuLink to="/pricing" onClick={toggleMenu}>
+            Subskrypcja
+          </MenuLink>
+          <MenuLink to="/help" onClick={toggleMenu}>
+            Pomoc
+          </MenuLink>
+          <MenuLink to="/auth" onClick={toggleMenu}>
+            Załóż konto Zaloguj się
+          </MenuLink>
         </>
       )}
     </MobileMenuContainer>

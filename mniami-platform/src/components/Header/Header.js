@@ -12,7 +12,12 @@ const HeaderContainer = styled.header`
   padding: 15px;
   max-width: 100vw;
   justify-content: space-between;
-  height: 60px;
+  height: 40px;
+  background-color: #fff;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 768px) {
     padding: 10px 20px;
@@ -44,7 +49,7 @@ const Header = () => {
       <HamburgerButton onClick={toggleMenu}>
         Menu <MenuIcon />
       </HamburgerButton>
-      {isMenuOpen && <MobileMenu />}
+      {isMenuOpen && <MobileMenu toggleMenu={toggleMenu} />}
       <Navigation />
       <UserLinks />
     </HeaderContainer>
