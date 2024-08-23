@@ -1,6 +1,7 @@
 import Header from '../../components/Header/Header'
 import HeroSection from './HeroSection'
 import Carousel from '../../components/Carousel'
+import VideoSection from './VideoSection'
 import Footer from '../../components/Footer'
 import { useState, useEffect } from 'react'
 import {
@@ -45,6 +46,7 @@ function Start() {
         category="recipe"
         viewAllLink="/recipes"
       />
+      <VideoSection />
       <Carousel
         type={'Wasze ulubione'}
         items={bestRecipes}
