@@ -39,9 +39,24 @@ function Start() {
     <div>
       <Header />
       <HeroSection />
-      <Carousel items={latestRecipes} viewAllLink="/recipes" />
-      <Carousel items={bestRecipes} viewAllLink="/recipes" />
-      <Carousel items={latestArticles} viewAllLink="/articles" />
+      <Carousel
+        type={'Najnowsze przepisy'}
+        items={latestRecipes}
+        category="recipe"
+        viewAllLink="/recipes"
+      />
+      <Carousel
+        type={'Wasze ulubione'}
+        items={bestRecipes}
+        category="recipe"
+        viewAllLink="/recipes"
+      />
+      <Carousel
+        type={'Ostatnie artykuły'}
+        items={latestArticles}
+        category="article"
+        viewAllLink="/articles"
+      />
       <Footer />
     </div>
   )
