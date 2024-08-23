@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import CallToActionButton from '../../styles/CallToActionButton'
 
 const SectionContainer = styled.div`
   width: 100%;
@@ -22,13 +23,16 @@ const Title = styled.h2`
   font-size: 18px;
 
   @media (min-width: 768px) {
-    width: 90%;
     font-size: 22px;
   }
 `
 
 const Content = styled.div`
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 768px) {
     width: 45%;
@@ -36,6 +40,7 @@ const Content = styled.div`
 
   p {
     text-align: justify;
+    margin: 20px 0;
   }
 `
 
@@ -68,6 +73,7 @@ const VideoSection = () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
+        <CallToActionButton to="/help">Przeczytaj więcej</CallToActionButton>
       </Content>
       <Video>
         <iframe

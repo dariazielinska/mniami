@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { NavLink } from 'react-router-dom'
+import CallToActionButton from '../../styles/CallToActionButton'
 
-export const HeroContainer = styled.section`
+const HeroContainer = styled.section`
   background-color: #ddd;
   text-align: center;
   padding: 50px 0;
@@ -31,26 +31,12 @@ export const HeroContainer = styled.section`
   }
 `
 
-export const RegisterButton = styled(NavLink)`
-  padding: 10px 40px;
-  font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border: 1px solid transparent;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #333;
-
-  &.hover {
-    background-color: red;
-  }
-`
-
 const HeroSection = () => {
   return (
     <HeroContainer>
       <h1>Dołącz do nas</h1>
       <p>Gotowanie dla rodziny nigdy nie było takie proste</p>
-      <RegisterButton to="/auth">Załóż konto</RegisterButton>
+      <CallToActionButton to="/auth">Załóż konto</CallToActionButton>
     </HeroContainer>
   )
 }
