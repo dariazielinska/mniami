@@ -27,10 +27,10 @@ const CarouselItems = styled.div`
   }
 
   @media (min-width: 941px) {
-    &:hover div:last-child {
+    &:hover a:last-child {
       background-color: #cccccc45;
     }
-    &:hover div:last-child > a {
+    &:hover a:last-child h3 {
       color: #333;
     }
   }
@@ -47,17 +47,29 @@ const CarouselItem = styled(Link)`
   text-decoration: none;
   color: #333;
 
+  &:last-child {
+    aspect-ratio: 2;
+
+    h3 {
+      margin-top: 10px;
+    }
+  }
+
   @media (min-width: 941px) {
     &:last-child {
       position: absolute;
       top: 0;
       left: 95%;
-      height: 80%;
       background-color: transparent;
       transition: background-color 0.3s ease;
       min-width: initial;
       max-width: 10%;
       margin-right: 0;
+    }
+
+    &:last-child h3 {
+      color: transparent;
+      transition: color 0.3s ease;
     }
   }
 `
@@ -77,32 +89,6 @@ const ItemTitle = styled.h3`
   color: #333;
 `
 
-const ViewAllButton = styled.div`
-  width: 100%;
-  height: 70%;
-  position: relative;
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: #333;
-  }
-
-  @media (min-width: 941px) {
-    height: 100%;
-    a {
-      color: transparent;
-    }
-  }
-`
-
 const Carousel = ({ type, items, category, viewAllLink }) => {
   return (
     <>
@@ -115,10 +101,8 @@ const Carousel = ({ type, items, category, viewAllLink }) => {
             <ItemTitle>{item.title}</ItemTitle>
           </CarouselItem>
         ))}
-        <CarouselItem>
-          <ViewAllButton>
-            <Link to={viewAllLink}>Zobacz Więcej</Link>
-          </ViewAllButton>
+        <CarouselItem to={viewAllLink}>
+          <ItemTitle>Zobacz więcej</ItemTitle>
         </CarouselItem>
       </CarouselItems>
     </>
