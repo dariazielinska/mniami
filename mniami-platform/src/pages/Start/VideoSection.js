@@ -47,11 +47,13 @@ const Content = styled.div`
 const Video = styled.div`
   width: 90%;
   height: 40vh;
+  margin-top: 20px;
 
   @media (min-width: 768px) {
     width: 50%;
     margin-right: 10px;
     height: 40vh;
+    margin-top: 0;
   }
 
   @media (min-width: 1210px) {

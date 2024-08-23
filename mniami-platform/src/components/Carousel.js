@@ -65,11 +65,15 @@ const CarouselItem = styled(Link)`
       min-width: initial;
       max-width: 10%;
       margin-right: 0;
+      height: 80%;
+      display: flex;
+      align-items: center;
     }
 
     &:last-child h3 {
       color: transparent;
       transition: color 0.3s ease;
+      margin-top: 0;
     }
   }
 `
