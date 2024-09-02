@@ -9,7 +9,8 @@ import Recipes from './pages/Recipes'
 import Recipe from './pages/Recipe'
 import Articles from './pages/Articles'
 import Article from './pages/Article'
-import LoginRegister from './pages/LoginRegister'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import UserProfile from './pages/UserProfile'
 import Favourites from './pages/Favourites'
 import Plan from './pages/Plan'
@@ -29,7 +30,8 @@ function App() {
           <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/article/:id" element={<Article />} />
-          <Route path="/auth" element={<LoginRegister />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/plan" element={<Plan />} />

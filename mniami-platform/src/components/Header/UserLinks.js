@@ -37,8 +37,7 @@ const UserLinks = () => {
         </>
       ) : (
         <>
-          <MenuLink to="/auth"> Załóż konto </MenuLink>
-          <MenuLink to="/auth"> Zaloguj się </MenuLink>
+          <MenuLink to="/login"> Zaloguj się </MenuLink>
         </>
       )}
     </UserLinksContainer>

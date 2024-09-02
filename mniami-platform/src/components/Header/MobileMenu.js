@@ -66,8 +66,8 @@ const MobileMenu = ({ toggleMenu }) => {
           <MenuLink to="/help" onClick={toggleMenu}>
             Pomoc
           </MenuLink>
-          <MenuLink to="/auth" onClick={toggleMenu}>
-            Załóż konto Zaloguj się
+          <MenuLink to="/login" onClick={toggleMenu}>
+            Zaloguj się
           </MenuLink>
         </>
       )}

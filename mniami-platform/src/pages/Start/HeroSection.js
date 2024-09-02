@@ -36,7 +36,7 @@ const HeroSection = () => {
     <HeroContainer>
       <h1>Dołącz do nas</h1>
       <p>Gotowanie dla rodziny nigdy nie było takie proste</p>
-      <CallToActionButton to="/auth">Załóż konto</CallToActionButton>
+      <CallToActionButton to="/register">Załóż konto</CallToActionButton>
     </HeroContainer>
   )
 }
