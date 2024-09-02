@@ -2,6 +2,9 @@ import Header from '../../components/Header/Header'
 import HeroSection from './HeroSection'
 import Carousel from '../../components/Carousel'
 import VideoSection from './VideoSection'
+import GetTheAppSection from './GetTheAppSection'
+import WhoWeAreSection from './WhoWeAreSection'
+import Newsletter from './Newsletter'
 import Footer from '../../components/Footer'
 import { useState, useEffect } from 'react'
 import {
@@ -53,12 +56,15 @@ function Start() {
         category="recipe"
         viewAllLink="/recipes"
       />
+      <GetTheAppSection />
       <Carousel
         type={'Ostatnie artykuły'}
         items={latestArticles}
         category="article"
         viewAllLink="/articles"
       />
+      <WhoWeAreSection />
+      <Newsletter />
       <Footer />
     </div>
   )
