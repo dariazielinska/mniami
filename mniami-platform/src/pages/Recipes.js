@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import SearchBar from '../components/SearchBar'
+import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
 import Footer from '../components/Footer'
 
 const Container = styled.div`
@@ -94,6 +95,7 @@ function Recipes() {
         subText="Jakie posiłki dzisiaj zaplanujesz?"
         placeholder="placuszki bananowe w 3 minuty"
       />
+      <FilterSortBar type="recipes" />
       <Container>
         <Title>Najnowsze przepisy</Title>
         {loading ? (

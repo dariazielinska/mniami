@@ -5,6 +5,7 @@ import CallToActionButton from '../styles/CallToActionButton'
 import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import SearchBar from '../components/SearchBar'
+import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
 import Footer from '../components/Footer'
 
 const Container = styled.div`
@@ -115,6 +116,7 @@ function Articles() {
         subText="Na jaki temat chcesz poczytać?"
         placeholder="najlepszy czas na rozszerzanie diety"
       />
+      <FilterSortBar type="articles" />
       <Container>
         <Title>Najnowsze artykuły</Title>
         {loading ? (
