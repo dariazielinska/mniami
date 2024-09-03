@@ -6,7 +6,9 @@ import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import SearchBar from '../components/SearchBar'
 import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
+import ShortcutButtons from '../components/ShortcutButtons'
 import Footer from '../components/Footer'
+import { recipeCategories } from '../constants/recipeCategories'
 
 const Container = styled.div`
   width: 100%;
@@ -88,6 +90,10 @@ function Recipes() {
     fetchRecipes()
   }, [])
 
+  const handleFilter = (category) => {
+    console.log(`Filtruj przepisy według kategorii: ${category}`)
+  }
+
   return (
     <div>
       <Header />
@@ -96,6 +102,11 @@ function Recipes() {
         placeholder="placuszki bananowe w 3 minuty"
       />
       <FilterSortBar type="recipes" />
+      <ShortcutButtons
+        type="recipes"
+        items={recipeCategories}
+        onFilter={handleFilter}
+      />
       <Container>
         <Title>Najnowsze przepisy</Title>
         {loading ? (

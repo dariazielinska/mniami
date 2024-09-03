@@ -6,7 +6,9 @@ import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import SearchBar from '../components/SearchBar'
 import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
+import ShortcutButtons from '../components/ShortcutButtons'
 import Footer from '../components/Footer'
+import { articleTopics } from '../constants/articleTopics'
 
 const Container = styled.div`
   width: 90%;
@@ -109,6 +111,10 @@ function Articles() {
     fetchArticles()
   }, [])
 
+  const handleFilter = (topic) => {
+    console.log(`Filtruj artykuły według tematu: ${topic}`)
+  }
+
   return (
     <div>
       <Header />
@@ -117,6 +123,11 @@ function Articles() {
         placeholder="najlepszy czas na rozszerzanie diety"
       />
       <FilterSortBar type="articles" />
+      <ShortcutButtons
+        type="articles"
+        items={articleTopics}
+        onFilter={handleFilter}
+      />
       <Container>
         <Title>Najnowsze artykuły</Title>
         {loading ? (
