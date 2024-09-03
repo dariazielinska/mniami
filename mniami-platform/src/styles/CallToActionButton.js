@@ -9,6 +9,8 @@ const CallToActionButton = styled(NavLink)`
   border-radius: 10px;
   text-decoration: none;
   color: #333;
+  text-align: center;
+  cursor: pointer;
 `
 
 export default CallToActionButton
