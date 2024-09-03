@@ -4,6 +4,7 @@ import { firestore } from '../firebaseConfig'
 import CallToActionButton from '../styles/CallToActionButton'
 import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
+import SearchBar from '../components/SearchBar'
 import Footer from '../components/Footer'
 
 const Container = styled.div`
@@ -110,6 +111,10 @@ function Articles() {
   return (
     <div>
       <Header />
+      <SearchBar
+        subText="Na jaki temat chcesz poczytać?"
+        placeholder="najlepszy czas na rozszerzanie diety"
+      />
       <Container>
         <Title>Najnowsze artykuły</Title>
         {loading ? (

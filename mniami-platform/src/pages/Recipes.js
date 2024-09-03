@@ -4,6 +4,7 @@ import { firestore } from '../firebaseConfig'
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
+import SearchBar from '../components/SearchBar'
 import Footer from '../components/Footer'
 
 const Container = styled.div`
@@ -89,6 +90,10 @@ function Recipes() {
   return (
     <div>
       <Header />
+      <SearchBar
+        subText="Jakie posiłki dzisiaj zaplanujesz?"
+        placeholder="placuszki bananowe w 3 minuty"
+      />
       <Container>
         <Title>Najnowsze przepisy</Title>
         {loading ? (
