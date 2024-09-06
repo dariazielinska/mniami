@@ -13,6 +13,7 @@ import AddToFavoriteIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Header from '../components/Header/Header'
 import BackArrow from '../components/BackArrow'
+import RecipeRating from '../components/RecipeRating'
 import Footer from '../components/Footer'
 import { useAuth } from '../contexts/AuthProvider'
 
@@ -45,7 +46,7 @@ const AddToFavourite = styled.span`
 
 const Title = styled.h1`
   width: 90%;
-  margin: 20px auto;
+  margin: 20px auto 9px auto;
   font-size: 24px;
   font-weight: 500;
 `
@@ -131,6 +132,7 @@ function Recipe() {
             </AddToFavourite>
           </ImageContainer>
           <Title>{recipe.title}</Title>
+          <RecipeRating recipeId={id} />
         </RecipeContainer>
       ) : (
         <p>Recipe not found.</p>
