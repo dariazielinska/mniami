@@ -12,6 +12,7 @@ import styled from '@emotion/styled'
 import AddToFavoriteIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Header from '../components/Header/Header'
+import BackArrow from '../components/BackArrow'
 import Footer from '../components/Footer'
 import { useAuth } from '../contexts/AuthProvider'
 
@@ -124,6 +125,7 @@ function Recipe() {
         <RecipeContainer>
           <ImageContainer>
             <Image />
+            <BackArrow />
             <AddToFavourite onClick={handleFavouriteToggle}>
               {isFavorite ? <FavoriteIcon /> : <AddToFavoriteIcon />}
             </AddToFavourite>
