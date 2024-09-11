@@ -6,38 +6,13 @@ import GetTheAppSection from './GetTheAppSection'
 import WhoWeAreSection from './WhoWeAreSection'
 import Newsletter from './Newsletter'
 import Footer from '../../components/Footer'
-import { useState, useEffect } from 'react'
-import {
-  fetchLatestRecipes,
-  fetchBestRecipes,
-  fetchLatestArticles,
-} from '../../api/api'
+import { useFetchRecipes } from '../../hooks/useFetchRecipes'
 
 function Start() {
-  const [latestRecipes, setLatestRecipes] = useState([])
-  const [bestRecipes, setbestRecipes] = useState([])
-  const [latestArticles, setLatestArticles] = useState([])
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const [latestRecipesData, bestRecipesData, latestArticlesData] =
-          await Promise.all([
-            fetchLatestRecipes(),
-            fetchBestRecipes(),
-            fetchLatestArticles(),
-          ])
-
-        setLatestRecipes(latestRecipesData)
-        setbestRecipes(bestRecipesData)
-        setLatestArticles(latestArticlesData)
-      } catch (error) {
-        console.error('Error fetching data: ', error)
-      }
-    }
-
-    getData()
-  }, [])
+  const { latestRecipes, bestRecipes, latestArticles, loading, error } =
+    useFetchRecipes()
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error loading recipes.</p>
 
   return (
     <div>

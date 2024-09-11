@@ -6,9 +6,11 @@ import styled from '@emotion/styled'
 import RecipeRating from './RecipeRating'
 import Ingredients from './Ingredients'
 import Instructions from './Instructions'
+import Carousel from '../../components/Carousel'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header/Header'
 import RecipeImage from './RecipeImage'
+import { useFetchRecipes } from '../../hooks/useFetchRecipes'
 
 const RecipeContainer = styled.div``
 
@@ -20,6 +22,7 @@ const Title = styled.h1`
 `
 
 function Recipe() {
+  const { latestRecipes } = useFetchRecipes()
   const { id } = useParams()
   const [recipe, setRecipe] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -57,6 +60,12 @@ function Recipe() {
           <RecipeRating recipeId={id} />
           <Ingredients ingredients={recipe.ingredients} />
           <Instructions instructions={recipe.instructions} />
+          <Carousel
+            type={'Zobacz inne przepisy'}
+            items={latestRecipes}
+            category="recipe"
+            viewAllLink="/recipes"
+          />
         </RecipeContainer>
       ) : (
         <p>Recipe not found.</p>
