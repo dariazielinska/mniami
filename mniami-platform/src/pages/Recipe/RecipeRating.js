@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { firestore } from '../firebaseConfig'
+import { firestore } from '../../firebaseConfig'
 import { collection, query, where, getDocs, addDoc } from 'firebase/firestore'
 import styled from '@emotion/styled'
 import StarIcon from '@mui/icons-material/Star'
 import StarHalfIcon from '@mui/icons-material/StarHalf'
 import StarOutlineIcon from '@mui/icons-material/StarOutline'
-import { useAuth } from '../contexts/AuthProvider'
+import { useAuth } from '../../contexts/AuthProvider'
 
 const RatingContainer = styled.div`
   width: 90%;
