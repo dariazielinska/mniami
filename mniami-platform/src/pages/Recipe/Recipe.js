@@ -5,6 +5,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import styled from '@emotion/styled'
 import RecipeRating from './RecipeRating'
 import Ingredients from './Ingredients'
+import Instructions from './Instructions'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header/Header'
 import RecipeImage from './RecipeImage'
@@ -55,6 +56,7 @@ function Recipe() {
           <Title>{recipe.title}</Title>
           <RecipeRating recipeId={id} />
           <Ingredients ingredients={recipe.ingredients} />
+          <Instructions instructions={recipe.instructions} />
         </RecipeContainer>
       ) : (
         <p>Recipe not found.</p>
