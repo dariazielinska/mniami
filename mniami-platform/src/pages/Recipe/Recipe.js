@@ -25,6 +25,7 @@ function Recipe() {
   const { latestRecipes } = useFetchRecipes()
   const { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [ingredientsDetails, setIngredientsDetails] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -34,10 +35,36 @@ function Recipe() {
         const recipeSnap = await getDoc(recipeRef)
 
         if (recipeSnap.exists()) {
-          setRecipe(recipeSnap.data())
+          const recipeData = recipeSnap.data()
+          setRecipe(recipeData)
+          const ingredientIds = recipeData.ingredients.map((ing) => ing.id)
+          if (ingredientIds.length > 0) {
+            const ingredientsPromises = ingredientIds.map(
+              async (ingredientId) => {
+                const ingredientRef = doc(
+                  firestore,
+                  'ingredients',
+                  ingredientId
+                )
+                const ingredientSnap = await getDoc(ingredientRef)
+                if (ingredientSnap.exists()) {
+                  return { id: ingredientSnap.id, ...ingredientSnap.data() }
+                } else {
+                  console.log(`Ingredient with ID ${ingredientId} not found`)
+                  return null
+                }
+              }
+            )
+
+            const fetchedIngredients = (
+              await Promise.all(ingredientsPromises)
+            ).filter((ingredient) => ingredient !== null)
+
+            setIngredientsDetails(fetchedIngredients)
+          }
         }
       } catch (e) {
-        console.error('Error fetching recipe: ', e)
+        console.error('Error fetching recipe or ingredients: ', e)
       } finally {
         setLoading(false)
       }
@@ -58,7 +85,10 @@ function Recipe() {
           <RecipeImage recipeId={id} />
           <Title>{recipe.title}</Title>
           <RecipeRating recipeId={id} />
-          <Ingredients ingredients={recipe.ingredients} />
+          <Ingredients
+            ingredients={recipe.ingredients}
+            ingredientsDetails={ingredientsDetails}
+          />
           <Instructions instructions={recipe.instructions} />
           <Carousel
             type={'Zobacz inne przepisy'}

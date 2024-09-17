@@ -7,12 +7,12 @@ const InstructionsContainer = styled.div`
 
 const InstructionsTitle = styled.h3`
   margin: 20px 0 9px 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
 `
 
 const InstructionsList = styled.ol`
-  font-size: 20px;
+  font-size: 18px;
   padding-inline-start: 25px;
 `
 

@@ -10,12 +10,12 @@ const IngredientsContainer = styled.div`
 
 const IngredientsTitle = styled.h2`
   margin: 20px 0 9px 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
 `
 
 const IngredientsList = styled.ul`
-  font-size: 20px;
+  font-size: 18px;
   padding-inline-start: 20px;
 `
 
@@ -44,7 +44,7 @@ const AddToCartButton = styled.button`
   }
 `
 
-const Ingredients = ({ ingredients }) => {
+const Ingredients = ({ ingredients, ingredientsDetails }) => {
   const { currentUser } = useAuth()
 
   const addToShoppingList = async () => {
@@ -55,11 +55,20 @@ const Ingredients = ({ ingredients }) => {
 
     const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
 
-    const formattedIngredients = ingredients.map((ingredient) => ({
-      name: ingredient.name,
-      quantity: ingredient.quantity,
-      unit: ingredient.unit,
-    }))
+    const formattedIngredients = ingredients
+      .map((ingredient) => {
+        const ingredientDetail = ingredientsDetails.find(
+          (detail) => detail.id === ingredient.id
+        )
+        return ingredientDetail
+          ? {
+              name: ingredientDetail.name,
+              quantity: ingredient.quantity,
+              unit: ingredient.unit,
+            }
+          : null
+      })
+      .filter(Boolean)
 
     try {
       await updateDoc(shoppingListRef, {
@@ -83,11 +92,18 @@ const Ingredients = ({ ingredients }) => {
     <IngredientsContainer>
       <IngredientsTitle>Składniki</IngredientsTitle>
       <IngredientsList>
-        {ingredients.map((ingredient, index) => (
-          <IngredientItem key={index}>
-            {ingredient.quantity} {ingredient.unit} {ingredient.name}
-          </IngredientItem>
-        ))}
+        {ingredients.map((ingredient, index) => {
+          const ingredientDetail = ingredientsDetails.find(
+            (detail) => detail.id === ingredient.id
+          )
+          return (
+            <IngredientItem key={index}>
+              {ingredient.quantity}
+              {ingredientDetail.unit}{' '}
+              {ingredientDetail ? ingredientDetail.name : 'Ładowanie...'}
+            </IngredientItem>
+          )
+        })}
       </IngredientsList>
       <AddToCartButton onClick={handleAddToShoppingList}>
         Dodaj do listy zakupów

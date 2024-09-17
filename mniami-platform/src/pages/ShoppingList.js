@@ -2,8 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthProvider'
 import { firestore } from '../firebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
+import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
+
+const Title = styled.h1`
+  width: 90%;
+  margin: 20px auto 9px auto;
+  font-size: 24px;
+  font-weight: 500;
+`
 
 function ShoppingList() {
   const { currentUser } = useAuth()
@@ -35,7 +43,7 @@ function ShoppingList() {
   return (
     <div>
       <Header />
-      ZAKŁADKA LISTA ZAKUPÓW
+      <Title>Lista zakupów</Title>
       <div>
         {currentUser ? (
           shoppingList ? (
