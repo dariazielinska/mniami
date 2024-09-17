@@ -64,7 +64,7 @@ const Ingredients = ({ ingredients, ingredientsDetails }) => {
           ? {
               name: ingredientDetail.name,
               quantity: ingredient.quantity,
-              unit: ingredient.unit,
+              unit: ingredientDetail.unit,
             }
           : null
       })

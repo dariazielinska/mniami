@@ -53,7 +53,7 @@ function ShoppingList() {
               ) : (
                 shoppingList.items.map((item, index) => (
                   <li key={index}>
-                    {item.name} - {item.quantity} {item.unit}
+                    {item.quantity} {item.unit} {item.name}
                   </li>
                 ))
               )}
