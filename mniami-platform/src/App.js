@@ -14,7 +14,7 @@ import Register from './pages/Register'
 import UserProfile from './pages/UserProfile'
 import Favourites from './pages/Favourites'
 import Plan from './pages/Plan'
-import ShoppingList from './pages/ShoppingList'
+import ShoppingList from './pages/ShoppingList/ShoppingList'
 
 function App() {
   return (

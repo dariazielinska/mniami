@@ -62,9 +62,11 @@ const Ingredients = ({ ingredients, ingredientsDetails }) => {
         )
         return ingredientDetail
           ? {
+              id: ingredient.id,
               name: ingredientDetail.name,
               quantity: ingredient.quantity,
               unit: ingredientDetail.unit,
+              purchased: false,
             }
           : null
       })

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../contexts/AuthProvider'
-import { firestore } from '../firebaseConfig'
-import { doc, getDoc } from 'firebase/firestore'
+import { useAuth } from '../../contexts/AuthProvider'
+import { firestore } from '../../firebaseConfig'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import styled from '@emotion/styled'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header/Header'
+import ProductAdder from './ProductAdder'
+import Footer from '../../components/Footer'
 
 const Title = styled.h1`
   width: 90%;
@@ -40,9 +41,28 @@ function ShoppingList() {
     fetchShoppingList()
   }, [currentUser])
 
+  const handleAddProduct = async (newProduct) => {
+    if (!currentUser || !shoppingList) return
+
+    const updatedList = {
+      ...shoppingList,
+      items: [...shoppingList.items, newProduct],
+    }
+
+    try {
+      const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
+      await updateDoc(shoppingListRef, { items: updatedList.items })
+
+      setShoppingList(updatedList)
+    } catch (error) {
+      console.error('Error updating shopping list:', error)
+    }
+  }
+
   return (
     <div>
       <Header />
+      <ProductAdder onAddProduct={handleAddProduct} />
       <Title>Lista zakupów</Title>
       <div>
         {currentUser ? (
