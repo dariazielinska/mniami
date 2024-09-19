@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
-import { useFetchArticle } from '../hooks/useArticle'
+import { useFetchArticle } from '../hooks/useFetchArticle'
 
 const Article = () => {
   const { id } = useParams()
