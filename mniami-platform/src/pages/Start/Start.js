@@ -6,11 +6,11 @@ import GetTheAppSection from './GetTheAppSection'
 import WhoWeAreSection from './WhoWeAreSection'
 import Newsletter from './Newsletter'
 import Footer from '../../components/Footer'
-import { useFetchRecipes } from '../../hooks/useFetchRecipes'
+import { useFetchCarousel } from '../../hooks/useFetchCarousel'
 
 function Start() {
   const { latestRecipes, bestRecipes, latestArticles, loading, error } =
-    useFetchRecipes()
+    useFetchCarousel()
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error loading recipes.</p>
 

@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
-import { firestore } from '../firebaseConfig'
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
@@ -9,6 +6,7 @@ import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
 import ShortcutButtons from '../components/ShortcutButtons'
 import Footer from '../components/Footer'
 import { recipeCategories } from '../constants/recipeCategories'
+import { useFetchRecipes } from '../hooks/useFetchRecipes'
 
 const Container = styled.div`
   width: 100%;
@@ -37,7 +35,7 @@ const RecipesContainer = styled.ul`
 
 const RecipePreview = styled(Link)`
   width: 45%;
-  heigth: 100%;
+  height: 100%;
   aspect-ratio: 1;
   text-decoration: none;
   color: #333;
@@ -54,7 +52,7 @@ const RecipePreview = styled(Link)`
 
 const Image = styled.div`
   width: 100%;
-  heigth: 100%;
+  height: 100%;
   aspect-ratio: 1;
   border: 1px solid #ddd;
   background-color: #ddd;
@@ -67,31 +65,18 @@ const RecipeTitle = styled.h3`
 `
 
 function Recipes() {
-  const [recipes, setRecipes] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const recipesCollection = collection(firestore, 'recipes')
-        const recipesSnapshot = await getDocs(recipesCollection)
-        const recipesList = recipesSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        setRecipes(recipesList)
-      } catch (error) {
-        console.error('Error fetching recipes: ', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchRecipes()
-  }, [])
+  const { recipes, loading, error } = useFetchRecipes()
 
   const handleFilter = (category) => {
     console.log(`Filtruj przepisy według kategorii: ${category}`)
+  }
+
+  if (loading) {
+    return <p>Ładujemy przepisy...</p>
+  }
+
+  if (error) {
+    return <p>Błąd podczas ładowania przepisów: {error.message}</p>
   }
 
   return (
@@ -109,18 +94,14 @@ function Recipes() {
       />
       <Container>
         <Title>Najnowsze przepisy</Title>
-        {loading ? (
-          <p>Ładujemy przepisy...</p>
-        ) : (
-          <RecipesContainer>
-            {recipes.map((recipe) => (
-              <RecipePreview to={`/recipe/${recipe.id}`} key={recipe.id}>
-                <Image></Image>
-                <RecipeTitle>{recipe.title}</RecipeTitle>
-              </RecipePreview>
-            ))}
-          </RecipesContainer>
-        )}
+        <RecipesContainer>
+          {recipes.map((recipe) => (
+            <RecipePreview to={`/recipe/${recipe.id}`} key={recipe.id}>
+              <Image />
+              <RecipeTitle>{recipe.title}</RecipeTitle>
+            </RecipePreview>
+          ))}
+        </RecipesContainer>
       </Container>
       <Footer />
     </div>

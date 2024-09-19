@@ -1,14 +1,12 @@
-import { useState, useEffect } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
-import { firestore } from '../firebaseConfig'
-import CallToActionButton from '../styles/CallToActionButton'
-import styled from '@emotion/styled'
 import Header from '../components/Header/Header'
 import SearchBar from '../components/SearchBar'
 import FilterSortBar from '../components/FilterSortBar/FilterSortBar'
 import ShortcutButtons from '../components/ShortcutButtons'
 import Footer from '../components/Footer'
+import { useFetchArticles } from '../hooks/useFetchArticles'
 import { articleTopics } from '../constants/articleTopics'
+import styled from '@emotion/styled'
+import CallToActionButton from '../styles/CallToActionButton'
 
 const Container = styled.div`
   width: 90%;
@@ -88,31 +86,18 @@ const Button = styled(CallToActionButton)`
 `
 
 function Articles() {
-  const [articles, setArticles] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const articlesCollection = collection(firestore, 'articles')
-        const articlesSnapshot = await getDocs(articlesCollection)
-        const articlesList = articlesSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        setArticles(articlesList)
-      } catch (error) {
-        console.error('Error fetching articles: ', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchArticles()
-  }, [])
+  const { articles, loading, error } = useFetchArticles()
 
   const handleFilter = (topic) => {
     console.log(`Filtruj artykuły według tematu: ${topic}`)
+  }
+
+  if (loading) {
+    return <p>Loading articles...</p>
+  }
+
+  if (error) {
+    return <p>Error fetching articles: {error.message}</p>
   }
 
   return (
@@ -130,30 +115,26 @@ function Articles() {
       />
       <Container>
         <Title>Najnowsze artykuły</Title>
-        {loading ? (
-          <p>Loading articles...</p>
-        ) : (
-          <ArticlesContainer>
-            {articles.map((article) => (
-              <Article key={article.id}>
-                <Image></Image>
-                <Preview>
-                  <ArticleTitle>{article.title}</ArticleTitle>
-                  <Date datetime="2024-09-02"> 20.08.2024 </Date>
-                  <Content>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
-                  </Content>
-                  <Button to={`/article/${article.id}`}>Czytaj dalej</Button>
-                </Preview>
-              </Article>
-            ))}
-          </ArticlesContainer>
-        )}
+        <ArticlesContainer>
+          {articles.map((article) => (
+            <Article key={article.id}>
+              <Image></Image>
+              <Preview>
+                <ArticleTitle>{article.title}</ArticleTitle>
+                <Date datetime="2024-09-02">20.08.2024</Date>
+                <Content>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur.
+                </Content>
+                <Button to={`/article/${article.id}`}>Czytaj dalej</Button>
+              </Preview>
+            </Article>
+          ))}
+        </ArticlesContainer>
       </Container>
       <Footer />
     </div>

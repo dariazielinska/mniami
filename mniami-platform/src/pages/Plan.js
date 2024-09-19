@@ -1,57 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth } from '../contexts/AuthProvider'
-import { firestore } from '../firebaseConfig'
-import { collection, query, getDocs } from 'firebase/firestore'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
+import { useFetchMealPlans } from '../hooks/useFetchMealPlans'
+import { useFetchRecipesList } from '../hooks/useFetchRecipesList'
 
 function Plan() {
-  const { currentUser } = useAuth()
-  const [mealPlans, setMealPlans] = useState({})
-  const [recipes, setRecipes] = useState({})
+  const {
+    mealPlans,
+    loading: mealPlansLoading,
+    error: mealPlansError,
+  } = useFetchMealPlans()
+  const {
+    recipes,
+    loading: recipesLoading,
+    error: recipesError,
+  } = useFetchRecipesList()
 
-  useEffect(() => {
-    const fetchMealPlans = async () => {
-      if (currentUser) {
-        try {
-          const mealPlansRef = collection(
-            firestore,
-            'mealPlans',
-            currentUser.uid,
-            'plans'
-          )
-          const mealPlansSnapshot = await getDocs(mealPlansRef)
+  if (mealPlansLoading || recipesLoading) {
+    return <p>Loading plans and recipes...</p>
+  }
 
-          let plans = {}
-          mealPlansSnapshot.forEach((doc) => {
-            plans[doc.id] = doc.data().recipes
-          })
-          setMealPlans(plans)
-        } catch (e) {
-          console.error('Error fetching meal plans:', e)
-        }
-      }
-    }
+  if (mealPlansError) {
+    return <p>Error fetching meal plans: {mealPlansError.message}</p>
+  }
 
-    const fetchRecipes = async () => {
-      try {
-        const q = query(collection(firestore, 'recipes'))
-        const querySnapshot = await getDocs(q)
-
-        let allRecipes = {}
-        querySnapshot.forEach((doc) => {
-          allRecipes[doc.id] = doc.data().title
-        })
-
-        setRecipes(allRecipes)
-      } catch (e) {
-        console.error('Error fetching recipes:', e)
-      }
-    }
-
-    fetchMealPlans()
-    fetchRecipes()
-  }, [currentUser])
+  if (recipesError) {
+    return <p>Error fetching recipes: {recipesError.message}</p>
+  }
 
   return (
     <div>

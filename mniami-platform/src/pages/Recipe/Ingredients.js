@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
-import { firestore } from '../../firebaseConfig'
-import { useAuth } from '../../contexts/AuthProvider'
+import { useShoppingList } from '../../hooks/useShoppingList'
+import { useState } from 'react'
 
 const IngredientsContainer = styled.div`
   width: 90%;
@@ -27,7 +26,6 @@ const AddToCartButton = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
   border: 1px solid transparent;
   border-radius: 10px;
-  text-decoration: none;
   color: #333;
   text-align: center;
   cursor: pointer;
@@ -45,70 +43,38 @@ const AddToCartButton = styled.button`
 `
 
 const Ingredients = ({ ingredients, ingredientsDetails }) => {
-  const { currentUser } = useAuth()
+  const { addToShoppingList } = useShoppingList()
+  const [loading, setLoading] = useState(false)
 
-  const addToShoppingList = async () => {
-    if (!currentUser) {
-      console.log('User is not logged in')
-      return
-    }
-
-    const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
-
-    const formattedIngredients = ingredients
-      .map((ingredient) => {
-        const ingredientDetail = ingredientsDetails.find(
-          (detail) => detail.id === ingredient.id
-        )
-        return ingredientDetail
-          ? {
-              id: ingredient.id,
-              name: ingredientDetail.name,
-              quantity: ingredient.quantity,
-              unit: ingredientDetail.unit,
-              purchased: false,
-            }
-          : null
-      })
-      .filter(Boolean)
-
-    try {
-      await updateDoc(shoppingListRef, {
-        items: arrayUnion(...formattedIngredients),
-      })
-      console.log('Ingredients added to shopping list')
-    } catch (error) {
-      console.error('Error adding ingredients to shopping list: ', error)
-    }
-  }
-
-  const handleAddToShoppingList = () => {
-    addToShoppingList()
+  const handleAddToShoppingList = async () => {
+    setLoading(true)
+    await addToShoppingList(ingredients, ingredientsDetails)
+    setLoading(false)
   }
 
   if (!ingredients || ingredients.length === 0) {
-    return <p>Wystąpił błąd</p>
+    return <p>Brak składników do wyświetlenia</p>
   }
 
   return (
     <IngredientsContainer>
       <IngredientsTitle>Składniki</IngredientsTitle>
       <IngredientsList>
-        {ingredients.map((ingredient, index) => {
+        {ingredients.map((ingredient) => {
           const ingredientDetail = ingredientsDetails.find(
             (detail) => detail.id === ingredient.id
           )
           return (
-            <IngredientItem key={index}>
+            <IngredientItem key={ingredient.id}>
               {ingredient.quantity}
-              {ingredientDetail.unit}{' '}
+              {ingredientDetail ? ` ${ingredientDetail.unit} ` : ' '}
               {ingredientDetail ? ingredientDetail.name : 'Ładowanie...'}
             </IngredientItem>
           )
         })}
       </IngredientsList>
-      <AddToCartButton onClick={handleAddToShoppingList}>
-        Dodaj do listy zakupów
+      <AddToCartButton onClick={handleAddToShoppingList} disabled={loading}>
+        {loading ? 'Dodawanie...' : 'Dodaj do listy zakupów'}
       </AddToCartButton>
     </IngredientsContainer>
   )

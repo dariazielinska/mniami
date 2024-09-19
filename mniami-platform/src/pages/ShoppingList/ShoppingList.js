@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../contexts/AuthProvider'
-import { firestore } from '../../firebaseConfig'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { useShoppingList } from '../../hooks/useShoppingList'
 import styled from '@emotion/styled'
 import Header from '../../components/Header/Header'
 import ProductAdder from './ProductAdder'
@@ -17,30 +16,22 @@ const Title = styled.h1`
 
 function ShoppingList() {
   const { currentUser } = useAuth()
+  const { getShoppingList, addToShoppingList } = useShoppingList()
   const [shoppingList, setShoppingList] = useState(null)
 
   useEffect(() => {
     const fetchShoppingList = async () => {
       if (currentUser) {
         try {
-          const shoppingListRef = doc(
-            firestore,
-            'shoppingLists',
-            currentUser.uid
-          )
-          const docSnap = await getDoc(shoppingListRef)
-          if (docSnap.exists()) {
-            setShoppingList(docSnap.data())
-          } else {
-            setShoppingList({ items: [] })
-          }
+          const list = await getShoppingList()
+          setShoppingList(list)
         } catch (error) {
           console.error('Error fetching shopping list:', error)
         }
       }
     }
     fetchShoppingList()
-  }, [currentUser])
+  }, [currentUser, getShoppingList])
 
   const handleAddProduct = async (newProduct) => {
     if (!currentUser || !shoppingList) return
@@ -51,9 +42,7 @@ function ShoppingList() {
     }
 
     try {
-      const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
-      await updateDoc(shoppingListRef, { items: updatedList.items })
-
+      await addToShoppingList([newProduct], shoppingList.items)
       setShoppingList(updatedList)
     } catch (error) {
       console.error('Error updating shopping list:', error)

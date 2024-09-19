@@ -1,37 +1,31 @@
 import { useState, useEffect } from 'react'
-import {
-  fetchLatestRecipes,
-  fetchBestRecipes,
-  fetchLatestArticles,
-} from '../api/api'
+import { collection, getDocs } from 'firebase/firestore'
+import { firestore } from '../firebaseConfig'
 
 export const useFetchRecipes = () => {
-  const [latestRecipes, setLatestRecipes] = useState([])
-  const [bestRecipes, setBestRecipes] = useState([])
-  const [latestArticles, setlatestArticles] = useState([])
+  const [recipes, setRecipes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const getData = async () => {
+    const fetchRecipes = async () => {
       try {
-        const [latestRecipes, bestRecipes, latestArticles] = await Promise.all([
-          fetchLatestRecipes(),
-          fetchBestRecipes(),
-          fetchLatestArticles(),
-        ])
-        setLatestRecipes(latestRecipes)
-        setBestRecipes(bestRecipes)
-        setlatestArticles(latestArticles)
-      } catch (err) {
-        setError(err)
+        const recipesCollection = collection(firestore, 'recipes')
+        const recipesSnapshot = await getDocs(recipesCollection)
+        const recipesList = recipesSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        setRecipes(recipesList)
+      } catch (error) {
+        setError(error)
       } finally {
         setLoading(false)
       }
     }
 
-    getData()
+    fetchRecipes()
   }, [])
 
-  return { latestRecipes, bestRecipes, latestArticles, loading, error }
+  return { recipes, loading, error }
 }
