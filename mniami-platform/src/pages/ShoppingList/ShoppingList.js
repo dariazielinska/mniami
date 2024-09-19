@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import styled from '@emotion/styled'
 import Header from '../../components/Header/Header'
 import ProductAdder from './ProductAdder'
+import Products from './Products'
 import Footer from '../../components/Footer'
 
 const Title = styled.h1`
@@ -64,27 +65,15 @@ function ShoppingList() {
       <Header />
       <ProductAdder onAddProduct={handleAddProduct} />
       <Title>Lista zakupów</Title>
-      <div>
-        {currentUser ? (
-          shoppingList ? (
-            <ul>
-              {shoppingList.items.length === 0 ? (
-                <p>Twoja lista zakupów jest pusta.</p>
-              ) : (
-                shoppingList.items.map((item, index) => (
-                  <li key={index}>
-                    {item.quantity} {item.unit} {item.name}
-                  </li>
-                ))
-              )}
-            </ul>
-          ) : (
-            <p>Ładowanie listy zakupów...</p>
-          )
+      {currentUser ? (
+        shoppingList ? (
+          <Products items={shoppingList.items} />
         ) : (
-          <p>Musisz być zalogowany, aby zobaczyć swoją listę zakupów.</p>
-        )}
-      </div>
+          <p>Ładowanie listy zakupów...</p>
+        )
+      ) : (
+        <p>Musisz być zalogowany, aby zobaczyć swoją listę zakupów.</p>
+      )}
       <Footer />
     </div>
   )
