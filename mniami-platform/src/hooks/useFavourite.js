@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react'
 import { firestore } from '../firebaseConfig'
-import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from 'firebase/firestore'
 import { useAuth } from '../contexts/AuthProvider'
 
 export const useFavourite = (recipeId) => {

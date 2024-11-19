@@ -1,22 +1,11 @@
 import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthProvider'
+import MniamiLogo from '../../assets/mniami-logo.svg'
 
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const LogoImage = styled.div`
-  width: 24px;
-  height: 24px;
-  background-color: #ddd;
-`
-const LogoText = styled.h1`
-  margin: 0 5px;
-  color: #454343;
-  font-size: 20px;
-  font-weight: 500;
+const LogoImage = styled.img`
+  width: 136px;
+  height: 45px;
 `
 
 const Logo = () => {
@@ -25,10 +14,7 @@ const Logo = () => {
 
   return (
     <Link to={targetPath}>
-      <LogoContainer>
-        <LogoImage />
-        <LogoText> MNIAMI </LogoText>
-      </LogoContainer>
+      <LogoImage src={MniamiLogo} alt="Mniami Logo" />
     </Link>
   )
 }
