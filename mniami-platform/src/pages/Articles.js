@@ -52,11 +52,10 @@ const Preview = styled.div`
   flex-direction: column;
 `
 
-const Image = styled.div`
+const Image = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  border: 1px solid #ddd;
-  background-color: #ddd;
+  object-fit: cover; 
 
   @media (min-width: 768px) {
     aspect-ratio: initial;
@@ -70,7 +69,7 @@ const ArticleTitle = styled.h3`
   font-size: 19px;
 `
 
-const Date = styled.time`
+const ArticleDate = styled.time`
   font-weight: 600;
   font-size: 16px;
 `
@@ -94,7 +93,7 @@ function Articles() {
 
   if (loading) {
     return <p>Loading articles...</p>
-  }
+  } 
 
   if (error) {
     return <p>Error fetching articles: {error.message}</p>
@@ -116,24 +115,26 @@ function Articles() {
       <Container>
         <Title>Najnowsze artykuły</Title>
         <ArticlesContainer>
-          {articles.map((article) => (
-            <Article key={article.id}>
-              <Image></Image>
-              <Preview>
-                <ArticleTitle>{article.title}</ArticleTitle>
-                <Date datetime="2024-09-02">20.08.2024</Date>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </Content>
-                <Button to={`/article/${article.id}`}>Czytaj dalej</Button>
-              </Preview>
-            </Article>
-          ))}
+          {articles.map((article) => {
+            const timestamp = new Date(article.createdAt.seconds * 1000)
+            const formattedDate = timestamp.toISOString()
+            const localeDate = timestamp.toLocaleDateString('pl-PL')
+            const image = article.imgPath
+
+            return (
+              <Article key={article.id}>
+                <Image src={image} alt={article.title}></Image>
+                <Preview>
+                  <ArticleTitle>{article.title}</ArticleTitle>
+                  <ArticleDate dateTime={formattedDate}>
+                    {localeDate}
+                  </ArticleDate>
+                  <Content>{article.summary}</Content>
+                  <Button to={`/article/${article.id}`}>Czytaj dalej</Button>
+                </Preview>
+              </Article>
+            )
+          })}
         </ArticlesContainer>
       </Container>
       <Footer />
