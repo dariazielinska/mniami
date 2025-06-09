@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import CallToActionButton from '../../styles/CallToActionButton'
+import newsletter from '../../assets/newsletter.png'
 
 const Container = styled.div`
   margin-top: 20px;
@@ -14,7 +15,7 @@ const Container = styled.div`
   padding-bottom: 20px;
 `
 
-const Image = styled.div`
+const Image = styled.img`
   width: 50%;
   aspect-ratio: 1;
   background-color: #f9f9f9;
@@ -55,7 +56,7 @@ const Input = styled.input`
 const Newsletter = () => {
   return (
     <Container>
-      <Image />
+      <Image src={newsletter} alt="Newsletter" />
       <Title>Zapisz się do naszego newslettera</Title>
       <Description>
         Otrzymuj najnowsze informacje i aktualizacje bezpośrednio na swoją

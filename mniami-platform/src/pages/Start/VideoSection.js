@@ -67,24 +67,24 @@ const VideoSection = () => {
       <Content>
         <Title>Przeczytaj, zaplanuj, zrób zakupy, ugotuj i odpocznij!</Title>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Gotowanie w domu nie musi być stresujące. Dzięki naszym prostym przepisom,
+          gotowym listom zakupów i sprytnym planom tygodniowym możesz z łatwością
+          ogarnąć posiłki dla całej rodziny. Bez marnowania jedzenia, bez
+          zbędnych wydatków — tylko pyszne, domowe jedzenie, które wszyscy pokochają.
+          Z nami planowanie to nie obowiązek, a przyjemność!
         </p>
         <CallToActionButton to="/help">Przeczytaj więcej</CallToActionButton>
       </Content>
       <Video>
         <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/oOVnfLEhPOI?si=dQ_gIPBV6YIiQfHS"
           title="YouTube video player"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
         ></iframe>
       </Video>
     </SectionContainer>

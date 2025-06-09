@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
+import imageMap from '../assets/imageMap'
 
 const CarouselTitle = styled.h2`
   width: 90%;
@@ -100,8 +101,11 @@ const Carousel = ({ type, items, category, viewAllLink }) => {
       <CarouselItems>
         {items.slice(0, 5).map((item, index) => (
           <CarouselItem to={`/${category}/${item.id}`} key={index}>
-            {/* <ItemImage src={item.image} alt={item.title} /> */}
-            <ItemImage></ItemImage>
+            <ItemImage
+              as="img"
+              src={imageMap[item.image]}
+              alt={item.title}
+            />
             <ItemTitle>{item.title}</ItemTitle>
           </CarouselItem>
         ))}

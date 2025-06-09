@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import CallToActionButton from '../../styles/CallToActionButton'
+import aboutUs from '../../assets/aboutUs.png'
 
 const SectionContainer = styled.div`
   width: 100%;
@@ -40,12 +41,10 @@ const Title = styled.h2`
   }
 `
 
-const Image = styled.div`
+const Image = styled.img`
   width: 90%;
   height: 90%;
   margin: 30px 0 15px 0;
-  background-color: #ddd;
-  border: 1px solid #ddd;
   aspect-ratio: 1;
   border-radius: 8px;
 
@@ -59,7 +58,7 @@ const WhoWeAreSection = () => {
   return (
     <SectionContainer>
       <Title>Kim jesteśmy?</Title>
-      <Image />
+      <Image src={aboutUs} alt="About Us" />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
