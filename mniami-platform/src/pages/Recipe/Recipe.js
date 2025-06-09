@@ -33,7 +33,7 @@ function Recipe() {
       <Header />
       {recipe ? (
         <RecipeContainer>
-          <RecipeImage recipeId={id} />
+          <RecipeImage image={recipe.image} recipeId={id} />
           <Title>{recipe.title}</Title>
           <RecipeRating recipeId={id} />
           <Ingredients
