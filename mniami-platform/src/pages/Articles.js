@@ -7,6 +7,7 @@ import { useFetchArticles } from '../hooks/useFetchArticles'
 import { articleTopics } from '../constants/articleTopics'
 import styled from '@emotion/styled'
 import CallToActionButton from '../styles/CallToActionButton'
+import imageMap from '../assets/imageMap'
 
 const Container = styled.div`
   width: 90%;
@@ -55,7 +56,7 @@ const Preview = styled.div`
 const Image = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover; 
+  object-fit: cover;
 
   @media (min-width: 768px) {
     aspect-ratio: initial;
@@ -93,7 +94,7 @@ function Articles() {
 
   if (loading) {
     return <p>Loading articles...</p>
-  } 
+  }
 
   if (error) {
     return <p>Error fetching articles: {error.message}</p>
@@ -119,11 +120,13 @@ function Articles() {
             const timestamp = new Date(article.createdAt.seconds * 1000)
             const formattedDate = timestamp.toISOString()
             const localeDate = timestamp.toLocaleDateString('pl-PL')
-            const image = article.imgPath
 
             return (
               <Article key={article.id}>
-                <Image src={image} alt={article.title}></Image>
+                <Image
+                  src={imageMap[article.image]}
+                  alt={article.title}
+                ></Image>
                 <Preview>
                   <ArticleTitle>{article.title}</ArticleTitle>
                   <ArticleDate dateTime={formattedDate}>
