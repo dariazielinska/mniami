@@ -79,9 +79,10 @@ const CarouselItem = styled(Link)`
   }
 `
 
-const ItemImage = styled.div`
+const ItemImage = styled.img`
   width: 100%;
   height: 80%;
+  object-fit: cover;
   border-radius: 8px;
   background-color: #ddd;
 `
@@ -101,11 +102,7 @@ const Carousel = ({ type, items, category, viewAllLink }) => {
       <CarouselItems>
         {items.slice(0, 5).map((item, index) => (
           <CarouselItem to={`/${category}/${item.id}`} key={index}>
-            <ItemImage
-              as="img"
-              src={imageMap[item.image]}
-              alt={item.title}
-            />
+            <ItemImage src={imageMap[item.image]} alt={item.title} />
             <ItemTitle>{item.title}</ItemTitle>
           </CarouselItem>
         ))}

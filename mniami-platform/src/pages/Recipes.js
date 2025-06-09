@@ -7,6 +7,7 @@ import ShortcutButtons from '../components/ShortcutButtons'
 import Footer from '../components/Footer'
 import { recipeCategories } from '../constants/recipeCategories'
 import { useFetchRecipes } from '../hooks/useFetchRecipes'
+import imageMap from '../assets/imageMap'
 
 const Container = styled.div`
   width: 100%;
@@ -26,42 +27,52 @@ const Title = styled.h2`
 
 const RecipesContainer = styled.ul`
   width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0;
   margin: 0 auto;
-`
-
-const RecipePreview = styled(Link)`
-  width: 45%;
-  height: 100%;
-  aspect-ratio: 1;
-  text-decoration: none;
-  color: #333;
-  cursor: pointer;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.2rem;
 
   @media (min-width: 768px) {
-    width: 30%;
+    gap: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    width: 18%;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
   }
 `
 
-const Image = styled.div`
+const RecipePreview = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #333;
+  background-color: #fafafa;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+`
+
+const Image = styled.img`
   width: 100%;
-  height: 100%;
-  aspect-ratio: 1;
-  border: 1px solid #ddd;
-  background-color: #ddd;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: #eee;
 `
 
 const RecipeTitle = styled.h3`
-  text-align: left;
-  font-weight: 300;
-  font-size: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.75rem 0.75rem 1rem;
+  margin: 0;
 `
 
 function Recipes() {
@@ -97,7 +108,7 @@ function Recipes() {
         <RecipesContainer>
           {recipes.map((recipe) => (
             <RecipePreview to={`/recipe/${recipe.id}`} key={recipe.id}>
-              <Image />
+              <Image src={imageMap[recipe.image]} alt={recipe.title} />
               <RecipeTitle>{recipe.title}</RecipeTitle>
             </RecipePreview>
           ))}
