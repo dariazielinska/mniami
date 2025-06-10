@@ -9,7 +9,7 @@ const SectionContainer = styled.div`
   align-items: center;
 
   p {
-    width: 90%;
+    width: 90%; 
     text-align: justify;
   }
 
@@ -45,7 +45,7 @@ const Image = styled.img`
   width: 90%;
   height: 90%;
   margin: 30px 0 15px 0;
-  aspect-ratio: 1;
+  object-fit: contain;
   border-radius: 8px;
 
   @media (min-width: 768px) {
