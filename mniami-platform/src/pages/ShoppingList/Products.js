@@ -42,35 +42,47 @@ const ProductActions = styled.div`
 const ProductName = styled.span`
   font-size: 16px;
   font-weight: 500;
+  color: ${(props) => (props.purchased ? '#999' : '#000')};
+  text-decoration: ${(props) => (props.purchased ? 'line-through' : 'none')};
 `
 
 const ProductQuantity = styled.span`
   font-size: 14px;
-  color: #666;
+  color: ${(props) => (props.purchased ? '#999' : '#666')};
+  text-decoration: ${(props) => (props.purchased ? 'line-through' : 'none')};
 `
 
 const Products = ({ items, onDelete, onCheck }) => {
+  const sortedItems = [...items].sort((a, b) => {
+    if (a.purchased === b.purchased) return 0
+    return a.purchased ? 1 : -1
+  })
+
   return (
     <ProductsContainer>
-      {items.length === 0 ? (
+      {sortedItems.length === 0 ? (
         <p>Twoja lista zakupów jest pusta.</p>
       ) : (
         <ProductsList>
-          {items.map((item, index) => (
+          {sortedItems.map((item, index) => (
             <ProductItem key={index}>
               <ProductInfo>
-                <ProductName>{item.name}</ProductName>
-                <ProductQuantity>
+                <ProductName purchased={item.purchased}>
+                  {item.name}
+                </ProductName>
+                <ProductQuantity purchased={item.purchased}>
                   {item.quantity} {item.unit}
                 </ProductQuantity>
               </ProductInfo>
               <ProductActions>
-                <CheckBoxOutlineBlankIcon
-                  style={{ color: '#ddd', cursor: 'pointer' }}
-                  onClick={() => onCheck(item)}
-                />
+                {!item.purchased && (
+                  <CheckBoxOutlineBlankIcon
+                    style={{ color: '#ddd', cursor: 'pointer' }}
+                    onClick={() => onCheck(item)}
+                  />
+                )}
                 <DeleteIcon
-                  style={{ color: '333', cursor: 'pointer' }}
+                  style={{ color: '#333', cursor: 'pointer' }}
                   onClick={() => onDelete(item)}
                 />
               </ProductActions>

@@ -16,7 +16,13 @@ const Title = styled.h1`
 
 function ShoppingList() {
   const { currentUser } = useAuth()
-  const { getShoppingList, addToShoppingList } = useShoppingList()
+  const {
+    getShoppingList,
+    addToShoppingList,
+    removeFromShoppingList,
+    toggleProductPurchased,
+  } = useShoppingList()
+
   const [shoppingList, setShoppingList] = useState(null)
 
   useEffect(() => {
@@ -49,6 +55,34 @@ function ShoppingList() {
     }
   }
 
+  const handleDeleteProduct = async (product) => {
+    try {
+      await removeFromShoppingList(product)
+      setShoppingList((prev) => ({
+        ...prev,
+        items: prev.items.filter((item) => item.name !== product.name),
+      }))
+    } catch (error) {
+      console.error('Error deleting product:', error)
+    }
+  }
+
+  const handleCheckProduct = async (product) => {
+    try {
+      await toggleProductPurchased(product)
+      setShoppingList((prev) => ({
+        ...prev,
+        items: prev.items.map((item) =>
+          item.name === product.name
+            ? { ...item, purchased: !item.purchased }
+            : item
+        ),
+      }))
+    } catch (error) {
+      console.error('Error toggling purchased status:', error)
+    }
+  }
+
   return (
     <div>
       <Header />
@@ -56,7 +90,11 @@ function ShoppingList() {
       <Title>Lista zakupów</Title>
       {currentUser ? (
         shoppingList ? (
-          <Products items={shoppingList.items} />
+          <Products
+            items={shoppingList.items}
+            onDelete={handleDeleteProduct}
+            onCheck={handleCheckProduct}
+          />
         ) : (
           <p>Ładowanie listy zakupów...</p>
         )

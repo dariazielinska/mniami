@@ -52,5 +52,57 @@ export const useShoppingList = () => {
     }
   }
 
-  return { getShoppingList, addToShoppingList }
+  const removeFromShoppingList = async (product) => {
+    if (!currentUser) return
+
+    const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
+    const currentListSnap = await getDoc(shoppingListRef)
+    if (!currentListSnap.exists()) return
+
+    const currentList = currentListSnap.data()
+    const filteredItems = currentList.items.filter(
+      (item) => item.name !== product.name
+    )
+
+    try {
+      await updateDoc(shoppingListRef, {
+        items: filteredItems,
+      })
+      console.log('Product removed from shopping list')
+    } catch (error) {
+      console.error('Error removing product: ', error)
+    }
+  }
+
+  const toggleProductPurchased = async (product) => {
+    if (!currentUser) return
+
+    const shoppingListRef = doc(firestore, 'shoppingLists', currentUser.uid)
+    const currentListSnap = await getDoc(shoppingListRef)
+    if (!currentListSnap.exists()) return
+
+    const currentList = currentListSnap.data()
+    const updatedItems = currentList.items.map((item) => {
+      if (item.name === product.name) {
+        return { ...item, purchased: !item.purchased }
+      }
+      return item
+    })
+
+    try {
+      await updateDoc(shoppingListRef, {
+        items: updatedItems,
+      })
+      console.log('Product purchase status toggled')
+    } catch (error) {
+      console.error('Error toggling purchased status: ', error)
+    }
+  }
+
+  return {
+    getShoppingList,
+    addToShoppingList,
+    removeFromShoppingList,
+    toggleProductPurchased,
+  }
 }
