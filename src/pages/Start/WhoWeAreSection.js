@@ -60,13 +60,11 @@ const WhoWeAreSection = () => {
       <Title>Kim jesteśmy?</Title>
       <Image src={aboutUs} alt="About Us" />
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        Jesteśmy grupą pasjonatów zdrowego gotowania i świadomego planowania
+        posiłków. Wierzymy,że dobrze zaplanowane menu to klucz do zdrowia,
+        oszczędności czasu i satysfakcji z codziennych dań. Naszą misją jest
+        wspierać Cię w tworzeniu smacznych, zrównoważonych posiłków, które
+        sprawią, że gotowanie stanie się przyjemnością, a nie obowiązkiem.
       </p>
       <CallToActionButton to="/help">
         Dowiedz się o nas więcej
