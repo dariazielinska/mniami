@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/mniami/static/js/main.5d25f9cd.js",
-    "static/js/453.c4561ba5.chunk.js": "/mniami/static/js/453.c4561ba5.chunk.js",
-    "index.html": "/mniami/index.html",
-    "main.5d25f9cd.js.map": "/mniami/static/js/main.5d25f9cd.js.map",
-    "453.c4561ba5.chunk.js.map": "/mniami/static/js/453.c4561ba5.chunk.js.map"
+    "main.js": "/mniami-platform/static/js/main.a0c74a84.js",
+    "static/js/453.c4561ba5.chunk.js": "/mniami-platform/static/js/453.c4561ba5.chunk.js",
+    "index.html": "/mniami-platform/index.html",
+    "main.a0c74a84.js.map": "/mniami-platform/static/js/main.a0c74a84.js.map",
+    "453.c4561ba5.chunk.js.map": "/mniami-platform/static/js/453.c4561ba5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5d25f9cd.js"
+    "static/js/main.a0c74a84.js"
   ]
 }
