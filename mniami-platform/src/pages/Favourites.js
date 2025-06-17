@@ -5,6 +5,7 @@ import { useFetchFavourites } from '../hooks/useFetchFavourites'
 import { useFetchCarousel } from '../hooks/useFetchCarousel'
 import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
+import imageMap from '../assets/imageMap'
 
 const Title = styled.h1`
   width: 90%;
@@ -37,12 +38,11 @@ const FavouriteItem = styled(Link)`
   flex-direction: column;
 `
 
-const Image = styled.div`
+const Image = styled.img`
   width: 100%;
-  height: 100%;
-  aspect-ratio: 1;
-  background-color: #ddd;
-  border: 1px solid #ddd;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: #eee;
 `
 
 const FavouriteTitle = styled.h3`
@@ -79,16 +79,15 @@ function Favourites() {
         <p>Brak ulubionych przepisów.</p>
       ) : (
         <FavouritesContainer>
-          {favourites.recipes.map((recipeId) => (
-            <FavouriteItem key={recipeId} to={`/recipe/${recipeId}`}>
-              <Image />
-              <FavouriteTitle>
-                {recipeDetails[recipeId]
-                  ? recipeDetails[recipeId].title
-                  : 'Ładowanie...'}
-              </FavouriteTitle>
-            </FavouriteItem>
-          ))}
+          {favourites.recipes
+            .map((recipeId) => recipeDetails[recipeId])
+            .filter(Boolean)
+            .map((recipe) => (
+              <FavouriteItem key={recipe.id} to={`/recipe/${recipe.id}`}>
+                <Image src={imageMap[recipe.image]} alt={recipe.title} />
+                <FavouriteTitle>{recipe.title}</FavouriteTitle>
+              </FavouriteItem>
+            ))}
         </FavouritesContainer>
       )}
       <SectionTitle>Artykuły</SectionTitle>
@@ -96,16 +95,15 @@ function Favourites() {
         <p>Brak ulubionych artykułów.</p>
       ) : (
         <FavouritesContainer>
-          {favourites.articles.map((articleId) => (
-            <FavouriteItem key={articleId} to={`/article/${articleId}`}>
-              <Image />
-              <FavouriteTitle>
-                {articleDetails[articleId]
-                  ? articleDetails[articleId].title
-                  : 'Ładowanie...'}
-              </FavouriteTitle>
-            </FavouriteItem>
-          ))}
+          {favourites.articles
+            .map((articleId) => articleDetails[articleId])
+            .filter(Boolean)
+            .map((article) => (
+              <FavouriteItem key={article.id} to={`/article/${article.id}`}>
+                <Image src={imageMap[article.image]} alt={article.title} />
+                <FavouriteTitle>{article.title}</FavouriteTitle>
+              </FavouriteItem>
+            ))}
         </FavouritesContainer>
       )}
       <Carousel
