@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import RecipeRating from './RecipeRating'
 import Ingredients from './Ingredients'
+import AddToPlanButton from './AddToPlanButton'
 import Instructions from './Instructions'
 import Carousel from '../../components/Carousel'
 import Footer from '../../components/Footer'
@@ -40,6 +41,7 @@ function Recipe() {
             ingredients={recipe.ingredients}
             ingredientsDetails={ingredientsDetails}
           />
+          <AddToPlanButton recipe={recipe} recipeId={id} />
           <Instructions instructions={recipe.instructions} />
           <Carousel
             type={'Zobacz inne przepisy'}

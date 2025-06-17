@@ -13,7 +13,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import UserProfile from './pages/UserProfile'
 import Favourites from './pages/Favourites'
-import Plan from './pages/Plan'
+import Plan from './pages/Plan/Plan'
 import ShoppingList from './pages/ShoppingList/ShoppingList'
 
 function App() {
