@@ -2,7 +2,7 @@
   "name": "mniami-platform",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dariazielinska.github.io/mniami-platform",
+  "homepage": "https://dariazielinska.github.io/mniami",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
