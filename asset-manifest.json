@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/mniami/static/js/main.a24a97f9.js",
+    "main.js": "/mniami/static/js/main.2e9ad5c2.js",
     "static/js/453.b5016dc8.chunk.js": "/mniami/static/js/453.b5016dc8.chunk.js",
     "static/media/meal_planning.png": "/mniami/static/media/meal_planning.250f1e42f9c2d12a9dbf.png",
     "static/media/recipe5.png": "/mniami/static/media/recipe5.6409214f312d851beb22.png",
@@ -19,10 +19,10 @@
     "static/media/recipe7.png": "/mniami/static/media/recipe7.d11b9da89a9542fd323f.png",
     "static/media/mniami-logo.svg": "/mniami/static/media/mniami-logo.4a8c9d4176dafdef384e5fb03a626853.svg",
     "index.html": "/mniami/index.html",
-    "main.a24a97f9.js.map": "/mniami/static/js/main.a24a97f9.js.map",
+    "main.2e9ad5c2.js.map": "/mniami/static/js/main.2e9ad5c2.js.map",
     "453.b5016dc8.chunk.js.map": "/mniami/static/js/453.b5016dc8.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a24a97f9.js"
+    "static/js/main.2e9ad5c2.js"
   ]
 }
