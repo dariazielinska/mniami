@@ -1,28 +1,12 @@
 {
   "files": {
-    "main.js": "/mniami/static/js/main.a24a97f9.js",
-    "static/js/453.b5016dc8.chunk.js": "/mniami/static/js/453.b5016dc8.chunk.js",
-    "static/media/meal_planning.png": "/mniami/static/media/meal_planning.250f1e42f9c2d12a9dbf.png",
-    "static/media/recipe5.png": "/mniami/static/media/recipe5.6409214f312d851beb22.png",
-    "static/media/article2.png": "/mniami/static/media/article2.ea50c24f61faf5b68fa8.png",
-    "static/media/recipe1.png": "/mniami/static/media/recipe1.1864305f2a4d8ee2c235.png",
-    "static/media/article3.png": "/mniami/static/media/article3.c8ffcb6b77ef97fea4c9.png",
-    "static/media/aboutUs.png": "/mniami/static/media/aboutUs.47a721a3b3df88ffdf42.png",
-    "static/media/recipe2.png": "/mniami/static/media/recipe2.52cadda79e21a0203983.png",
-    "static/media/recipe4.png": "/mniami/static/media/recipe4.3f819dfc1936ba3e3949.png",
-    "static/media/recipe8.png": "/mniami/static/media/recipe8.e648e86cc69280887589.png",
-    "static/media/article4.png": "/mniami/static/media/article4.acce7da254899897bec7.png",
-    "static/media/recipe6.png": "/mniami/static/media/recipe6.19f1b1a36034d61e65fe.png",
-    "static/media/recipe3.png": "/mniami/static/media/recipe3.6a457ddf39769955b65e.png",
-    "static/media/article1.png": "/mniami/static/media/article1.27487c9844e386c46565.png",
-    "static/media/newsletter.png": "/mniami/static/media/newsletter.9ced276fb6c69908a889.png",
-    "static/media/recipe7.png": "/mniami/static/media/recipe7.d11b9da89a9542fd323f.png",
-    "static/media/mniami-logo.svg": "/mniami/static/media/mniami-logo.4a8c9d4176dafdef384e5fb03a626853.svg",
+    "main.js": "/mniami/static/js/main.5d25f9cd.js",
+    "static/js/453.c4561ba5.chunk.js": "/mniami/static/js/453.c4561ba5.chunk.js",
     "index.html": "/mniami/index.html",
-    "main.a24a97f9.js.map": "/mniami/static/js/main.a24a97f9.js.map",
-    "453.b5016dc8.chunk.js.map": "/mniami/static/js/453.b5016dc8.chunk.js.map"
+    "main.5d25f9cd.js.map": "/mniami/static/js/main.5d25f9cd.js.map",
+    "453.c4561ba5.chunk.js.map": "/mniami/static/js/453.c4561ba5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a24a97f9.js"
+    "static/js/main.5d25f9cd.js"
   ]
 }
