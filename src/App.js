@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@emotion/react'
 import theme from './styles/theme'
 import GlobalStyles from './styles/GlobalStyles'
@@ -19,7 +19,7 @@ import ShoppingList from './pages/ShoppingList/ShoppingList'
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <HashRouter>
         <GlobalStyles />
         <Routes>
           <Route exact path="/" element={<Start />} />
@@ -37,7 +37,7 @@ function App() {
           <Route path="/plan" element={<Plan />} />
           <Route path="/shopping-list" element={<ShoppingList />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }
