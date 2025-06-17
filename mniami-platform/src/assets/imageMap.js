@@ -24,7 +24,7 @@ const imageMap = {
   'article1.png': article1,
   'article2.png': article2,
   'article3.png': article3,
-  'article4.png': article4
+  'article4.png': article4,
 }
 
 export default imageMap

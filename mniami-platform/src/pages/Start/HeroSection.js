@@ -49,7 +49,7 @@ const BackgroundImage = styled.img`
 const HeroSection = () => {
   return (
     <HeroContainer>
-      <BackgroundImage src={MealPlanningImg} alt="Meal Planning" ></BackgroundImage>
+      <BackgroundImage src={MealPlanningImg} alt="Meal Planning" />
       <h1>Dołącz do nas</h1>
       <p>Gotowanie dla rodziny nigdy nie było takie proste</p>
       <CallToActionButton to="/register">Załóż konto</CallToActionButton>

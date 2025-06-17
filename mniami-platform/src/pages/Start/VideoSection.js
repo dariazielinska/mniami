@@ -67,11 +67,11 @@ const VideoSection = () => {
       <Content>
         <Title>Przeczytaj, zaplanuj, zrób zakupy, ugotuj i odpocznij!</Title>
         <p>
-          Gotowanie w domu nie musi być stresujące. Dzięki naszym prostym przepisom,
-          gotowym listom zakupów i sprytnym planom tygodniowym możesz z łatwością
-          ogarnąć posiłki dla całej rodziny. Bez marnowania jedzenia, bez
-          zbędnych wydatków — tylko pyszne, domowe jedzenie, które wszyscy pokochają.
-          Z nami planowanie to nie obowiązek, a przyjemność!
+          Gotowanie w domu nie musi być stresujące. Dzięki naszym prostym
+          przepisom, gotowym listom zakupów i sprytnym planom tygodniowym możesz
+          z łatwością ogarnąć posiłki dla całej rodziny. Bez marnowania
+          jedzenia, bez zbędnych wydatków — tylko pyszne, domowe jedzenie, które
+          wszyscy pokochają. Z nami planowanie to nie obowiązek, a przyjemność!
         </p>
         <CallToActionButton to="/help">Przeczytaj więcej</CallToActionButton>
       </Content>
@@ -81,9 +81,9 @@ const VideoSection = () => {
           height="315"
           src="https://www.youtube.com/embed/oOVnfLEhPOI?si=dQ_gIPBV6YIiQfHS"
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
+          referrerPolicy="strict-origin-when-cross-origin"
           allowfullscreen
         ></iframe>
       </Video>
